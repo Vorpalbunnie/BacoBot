@@ -13,10 +13,10 @@ let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 let removeReacts = true;
 const emojiRoleDict = {
 	"nfreakLogo": "Notifications",
-	"buttonWhite:": "Smash Ultimate [Ping]",
-	"buttonRainbow": "Left 4 Dead 2 [Ping]",
+	"buttonRainbow:": "Smash Ultimate [Ping]",
+	"buttonBlue": "Left 4 Dead 2 [Ping]",
 	"buttonRed": "Melee [Ping]",
-	"buttonBlue": "Apex Legends [Ping]"
+	"buttonWhite": "Apex Legends [Ping]"
 };
 
 function emojiToRole(emojiName, messageID) {
