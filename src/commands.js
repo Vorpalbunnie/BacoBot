@@ -447,11 +447,11 @@ async function userCommands(message, args) {
 						name: "meme" + num +".png"
 					}]
 				});
-				if (err.code === 'ENOENT'){
-					console.log("File not found");
-					throw err;
-				}
 			});
+			if (err.code === 'ENOENT'){
+				console.log("File not found");
+				throw err;
+			}
 		} catch (e) {
 			return message.channel.send("ice cream machine broke");
 		}
