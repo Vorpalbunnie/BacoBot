@@ -428,14 +428,14 @@ async function userCommands(message, args) {
 		fs.readdir('./img/meme/', (err, fles) => {
 			var ran = Math.floor(Math.random() * files.length);
 			try {
-				return await message.channel.send({
+				return message.channel.send({
 					files: [{
 						attachment: "./img/meme/meme" + ran +".png",
 						name: "meme" + ran +".png"
 					}]
 				});
 			} catch (e) {
-				return await message.channel.send("ice cream machine broke");
+				return message.channel.send("ice cream machine broke");
 			}
 		});
 	}
