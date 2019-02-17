@@ -430,15 +430,15 @@ async function userCommands(message, args) {
 				var num;
 				if (args.length === 2){
 					num = args[1];
-					console.log("Fetching meme #" + num);
 				} else{
-					var ran = Math.floor(Math.random() * files.length);
+					num = Math.floor(Math.random() * files.length);
 				}
+				console.log("Fetching meme #" + num);
 				console.log("Number of files: " + files.length);
 				return message.channel.send({
 					files: [{
 						attachment: "./img/meme/meme" + ran +".png",
-						name: "meme" + ran +".png"
+						name: "meme" + num +".png"
 					}]
 				});
 				if (err.code === 'ENOENT'){
