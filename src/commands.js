@@ -437,7 +437,7 @@ async function userCommands(message, args) {
 				console.log("Number of files: " + files.length);
 				return message.channel.send({
 					files: [{
-						attachment: "./img/meme/meme" + ran +".png",
+						attachment: "./img/meme/meme" + num +".png",
 						name: "meme" + num +".png"
 					}]
 				});
