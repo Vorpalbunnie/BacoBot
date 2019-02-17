@@ -57,8 +57,8 @@ DiscordBot.on('message', async message => {
 		await commands.modCommands(message, args);
 		await blacklist.handleBlacklistCommands(message, args);
 
-		//if (args[0] == "=refresh") //needs to use the DiscordBot object directly, so it's in index
-		//	await misc.cacheRoleMessages(DiscordBot);
+		if (args[0] == "=refresh") //needs to use the DiscordBot object directly, so it's in index
+			await misc.cacheRoleMessages(DiscordBot);
 	}
 
 	// Check all messages for userCommands
@@ -76,10 +76,10 @@ DiscordBot.on('message', async message => {
 	}
 
 	//Every `updateCacheEvery` messages, update the cache to hopefully ensure the reaction messages are never bumped out of cache
-	//if (++numMessages >= updateCacheEvery) {
-	//	numMessages = 0;
-	//	await misc.cacheRoleMessages(DiscordBot);
-	//}
+	if (++numMessages >= updateCacheEvery) {
+		numMessages = 0;
+		await misc.cacheRoleMessages(DiscordBot);
+	}
 
 	let reminderToSend = misc.checkReminders();
 	if (reminderToSend) {
@@ -91,6 +91,7 @@ DiscordBot.on('message', async message => {
 
 //Executed upon a reaction being added to a message in the cache
 DiscordBot.on("messageReactionAdd", async (messageReaction, user) => {
+	console.log("Received reaction debug");
 	await reaction.handleReactionAdd(messageReaction, user, DiscordBot);
 });
 
@@ -141,6 +142,6 @@ DiscordBot.on('ready', async () => {
 	console.log('MemeusMachinus is ready');
 	DiscordBot.setMaxListeners(0); //done to ensure it responds to everything regardless of how busy the server gets
 	await DiscordBot.user.setActivity("Type !help for commands!");
-	//await misc.cacheRoleMessages(DiscordBot);
+	await misc.cacheRoleMessages(DiscordBot);
 });
 
