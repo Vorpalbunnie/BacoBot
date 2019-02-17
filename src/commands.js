@@ -421,20 +421,23 @@ async function userCommands(message, args) {
 				userHelpString += "`" + userCommandList[i].command + "` -  " + userCommandList[i].description + "\n";
 			}
 		}
+		userHelpString += "`" + "meme" + "` -  " + "my specialty" + "\n";
 		return await message.channel.send("Here's a list of commands for all users:\n" + userHelpString);
 	}
 	else if (args[0] === "!meme"){
-		var ran = Math.floor(Math.random() * 242);
-		try {
-			return await message.channel.send({
-				files: [{
-					attachment: "./img/meme/meme" + ran +".png",
-					name: "meme" + ran +".png"
-				}]
-			});
-		} catch (e) {
-			return await message.channel.send("ice cream machine broke");
-		}
+		fs.readdir('./img/meme/', (err, fles) => {
+			var ran = Math.floor(Math.random() * files.length);
+			try {
+				return await message.channel.send({
+					files: [{
+						attachment: "./img/meme/meme" + ran +".png",
+						name: "meme" + ran +".png"
+					}]
+				});
+			} catch (e) {
+				return await message.channel.send("ice cream machine broke");
+			}
+		});
 	}
 	else if (args[0].startsWith(commandPrefix)) {
 		for (let i = 0; i < userCommandList.length; i++) {

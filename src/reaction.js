@@ -11,7 +11,11 @@ const misc = require("./misc.js");
 
 let removeReacts = true;
 const emojiRoleDict = {
-	// Nothing yet
+	"regional_indicator_u:": "Smash Ultimate [Ping]",
+	"regional_indicator_l": "Left 4 Dead 2 [Ping]",
+	"regional_indicator_m": "Melee [Ping]",
+	"regional_indicator_a": "Apex Legends [Ping]",
+	"white_check_mark": "Notifications"
 };
 
 function emojiToRole(emojiName, messageID) {
@@ -22,15 +26,15 @@ function emojiToRole(emojiName, messageID) {
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
 	if (messageReaction.message.channel.name === "role-assignment") {
 		console.log(messageReaction.emoji.name);
-		if (messageReaction.emoji.name === "cgccWhite") {
-			console.log("Received cgccWhite react");
+		if (messageReaction.emoji.name === "nfreakW") {
+			console.log("Received nfreakW react");
 			//add role emotes
 			removeReacts = false;
 			let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 			for (let i = 0; i < emojiNames.length; i++) {
 				await messageReaction.message.react(DiscordBot.emojis.find("name", emojiNames[i]));
 			}
-			await messageReaction.remove(user); //remove the cgccWhite emoji
+			await messageReaction.remove(user); //remove the nfreakW emoji
 			removeReacts = true;
 		} else {
 			console.log("Received something other than cgccWhite");
