@@ -21,6 +21,7 @@ const emojiRoleDict = {
 
 function emojiToRole(emojiName, messageID) {
 	let ret = emojiRoleDict[emojiName];
+	console.log("Received " + emojiName + ", returning " + ret);
 	return ret;
 }
 
