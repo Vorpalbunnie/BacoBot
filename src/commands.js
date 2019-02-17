@@ -416,7 +416,7 @@ async function modCommands(message, args) {
 async function userCommands(message, args) {
 	let userHelpString = "";
 	if (message.content.includes("69")){
-		var num = Math.floor(Math.random() * 5);
+		var num = Math.floor(Math.random() * 3);
 		console.log("nice. random num = " + num);
 		if (num === 1){
 			message.channel.send("nice");

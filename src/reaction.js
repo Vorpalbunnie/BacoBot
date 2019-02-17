@@ -24,6 +24,7 @@ function emojiToRole(emojiName, messageID) {
 }
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
+	console.log("Receieved message reaction");
 	if (messageReaction.message.channel.name === "role-assignment") {
 		console.log(messageReaction.emoji.name);
 		if (messageReaction.emoji.name === "nfreakW") {
@@ -37,7 +38,7 @@ async function handleReactionAdd(messageReaction, user, DiscordBot) {
 			await messageReaction.remove(user); //remove the nfreakW emoji
 			removeReacts = true;
 		} else {
-			console.log("Received something other than cgccWhite");
+			console.log("Received something other than nfreakW");
 			let guild = messageReaction.message.member.guild;
 			let hasRole = false;
 			try {
