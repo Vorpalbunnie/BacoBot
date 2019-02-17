@@ -421,11 +421,11 @@ async function userCommands(message, args) {
 				userHelpString += "`" + userCommandList[i].command + "` -  " + userCommandList[i].description + "\n";
 			}
 		}
-		userHelpString += "`" + "meme" + "` -  " + "my specialty" + "\n";
+		userHelpString += "`" + "!meme" + "` -  " + "my specialty" + "\n";
 		return await message.channel.send("Here's a list of commands for all users:\n" + userHelpString);
 	}
 	else if (args[0] === "!meme"){
-		fs.readdir('./img/meme/', (err, fles) => {
+		fs.readdir('./img/meme/', (err, files) => {
 			var ran = Math.floor(Math.random() * files.length);
 			try {
 				return message.channel.send({
