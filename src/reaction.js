@@ -12,11 +12,11 @@ const misc = require("./misc.js");
 let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 let removeReacts = true;
 const emojiRoleDict = {
-	"regional_indicator_u:": "Smash Ultimate [Ping]",
-	"regional_indicator_l": "Left 4 Dead 2 [Ping]",
-	"regional_indicator_m": "Melee [Ping]",
-	"regional_indicator_a": "Apex Legends [Ping]",
-	"white_check_mark": "Notifications"
+	"nfreakLogo": "Notifications",
+	"buttonWhite:": "Smash Ultimate [Ping]",
+	"buttonRainbow": "Left 4 Dead 2 [Ping]",
+	"buttonRed": "Melee [Ping]",
+	"buttonBlue": "Apex Legends [Ping]"
 };
 
 function emojiToRole(emojiName, messageID) {
