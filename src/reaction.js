@@ -24,7 +24,6 @@ function emojiToRole(emojiName, messageID) {
 }
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
-	console.log("Receieved message reaction");
 	if (messageReaction.message.channel.name === "role-assignment") {
 		console.log(messageReaction.emoji.name);
 		if (messageReaction.emoji.name === "nfreakW") {
