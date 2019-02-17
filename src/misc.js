@@ -88,6 +88,26 @@ function roleInRoles(roleName, roles) {
 	return false;
 }
 
+async function cacheRoleMessages(DiscordBot) {
+	await DiscordBot.channels.get(ids.roleassignment).fetchMessages({limit: 50}); //get back messages from the #role-assignment channel
+	let messages = DiscordBot.channels.get(ids.roleassignment).messages;
+	let keys = messages.keyArray();
+	for (let i = 0; i < keys.length; i++) {
+		let reactionKeys = messages.get(keys[i]).reactions.keyArray();
+		for (let j = 0; j < reactionKeys.length; j++) {
+			let reactedUsers = await messages.get(keys[i]).reactions.get(reactionKeys[j]).fetchUsers();
+			reactedUsers = reactedUsers.array();
+			for (let k = 0; k < reactedUsers.length; k++) {
+				if (DiscordBot.user != reactedUsers[k]) {
+					console.log("Attempting to remove " + reactedUsers[k].tag);
+					await messages.get(keys[i]).reactions.get(reactionKeys[j]).remove(reactedUsers[k]);
+				}
+			}
+		}
+	}
+	process.stdout.write("Cached role messages. ");
+}
+
 async function botReply(message, DiscordBot) {
 	let a = Math.floor(Math.random() * 10);
 	let s = ["wah", "puffWhat", "gunRight", "nfreakW", "stopthis", "expand", "falconPropane", "angery", "doot", "nfreakHi", "spicyoil", "nfreakSoy", "thumbsUp"];
