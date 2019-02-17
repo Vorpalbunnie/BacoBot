@@ -26,12 +26,12 @@ function emojiToRole(emojiName, messageID) {
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
 	if (messageReaction.message.channel.name === "role-assignment") {
-		console.log("Received react in role-assignment: " + messageReaction.emoji.name);
 		if (messageReaction.emoji.name === "nfreakW") {
 			console.log("Received nfreakW react");
 			//add role emotes
 			removeReacts = false;
 			for (let i = 0; i < emojiNames.length; i++) {
+				console.log("reacting with " + emojiNames[i] + "emote");
 				await messageReaction.message.react(DiscordBot.emojis.find("name", emojiNames[i]));
 			}
 			await messageReaction.remove(user); //remove the nfreakW emoji
