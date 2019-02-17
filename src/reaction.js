@@ -32,7 +32,7 @@ async function handleReactionAdd(messageReaction, user, DiscordBot) {
 			removeReacts = false;
 			for (let i = 0; i < emojiNames.length; i++) {
 				console.log("reacting with " + emojiNames[i] + " emote");
-				await messageReaction.message.react(DiscordBot.emojis.find(emoji => emojio.name === emojiNames[i]));
+				await messageReaction.message.react(DiscordBot.emojis.find(emoji => emoji.name === emojiNames[i]));
 			}
 			await messageReaction.remove(user); //remove the nfreakW emoji
 			removeReacts = true;
