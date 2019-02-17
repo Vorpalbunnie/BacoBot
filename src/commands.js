@@ -432,28 +432,31 @@ async function userCommands(message, args) {
 		return await message.channel.send("Here's a list of commands for all users:\n" + userHelpString);
 	}
 	else if (args[0] === "!meme"){
-		try{
-			fs.readdir('./img/meme/', (err, files) => {
-				var num;
-				if (args.length === 2){
-					num = args[1];
-				} else{
-					num = Math.floor(Math.random() * files.length);
-				}
-				console.log("Fetching meme #" + num + ", Number of files: " + files.length);
-				return message.channel.send({
-					files: [{
-						attachment: "./img/meme/meme" + num +".png",
-						name: "meme" + num +".png"
-					}]
+		if (message.channel.name === "shitposts-and-memes"){
+			try{
+				fs.readdir('./img/meme/', (err, files) => {
+					var num;
+					if (args.length === 2){
+						num = args[1];
+					} else{
+						num = Math.floor(Math.random() * files.length);
+					}
+					console.log("Fetching meme #" + num + ", Number of files: " + files.length);
+					return message.channel.send({
+						files: [{
+							attachment: "./img/meme/meme" + num +".png",
+							name: "meme" + num +".png"
+						}]
+					});
 				});
-			});
-			if (err.code === 'ENOENT'){
-				console.log("File not found");
-				throw err;
+				if (err.code === 'ENOENT'){
+					console.log("File not found");
+				}
+			} catch (e) {
+				return message.channel.send("ice cream machine broke");
 			}
-		} catch (e) {
-			return message.channel.send("ice cream machine broke");
+		} else {
+			return message.channel.send("hey now take it over to the meme channel");
 		}
 	}
 	
