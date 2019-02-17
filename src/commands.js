@@ -427,7 +427,12 @@ async function userCommands(message, args) {
 	else if (args[0] === "!meme"){
 		try{
 			fs.readdir('./img/meme/', (err, files) => {
-				var ran = Math.floor(Math.random() * files.length);
+				var num;
+				if (args.length === 2){
+					num = args[1];
+				} else{
+					var ran = Math.floor(Math.random() * files.length);
+				}
 				console.log("Number of files: " + files.length);
 				return message.channel.send({
 					files: [{
@@ -437,7 +442,7 @@ async function userCommands(message, args) {
 				});
 				if (err.code === 'ENOENT'){
 					console.log("File not found");
-					return message.channel.send("ice cream machine broke");
+					throw err;
 				}
 			});
 		} catch (e) {
