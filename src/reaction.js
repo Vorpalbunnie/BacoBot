@@ -9,6 +9,7 @@
 const fs = require("fs");
 const misc = require("./misc.js");
 
+let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 let removeReacts = true;
 const emojiRoleDict = {
 	"regional_indicator_u:": "Smash Ultimate [Ping]",
@@ -25,12 +26,11 @@ function emojiToRole(emojiName, messageID) {
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
 	if (messageReaction.message.channel.name === "role-assignment") {
-		console.log(messageReaction.emoji.name);
+		console.log("Received react in role-assignment: " + messageReaction.emoji.name);
 		if (messageReaction.emoji.name === "nfreakW") {
 			console.log("Received nfreakW react");
 			//add role emotes
 			removeReacts = false;
-			let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 			for (let i = 0; i < emojiNames.length; i++) {
 				await messageReaction.message.react(DiscordBot.emojis.find("name", emojiNames[i]));
 			}
