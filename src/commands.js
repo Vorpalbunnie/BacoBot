@@ -427,6 +427,7 @@ async function userCommands(message, args) {
 	else if (args[0] === "!meme"){
 		fs.readdir('./img/meme/', (err, files) => {
 			var ran = Math.floor(Math.random() * files.length);
+			console.log("Number of files: " + files.length);
 			try {
 				return message.channel.send({
 					files: [{
