@@ -439,8 +439,7 @@ async function userCommands(message, args) {
 				} else{
 					num = Math.floor(Math.random() * files.length);
 				}
-				console.log("Fetching meme #" + num);
-				console.log("Number of files: " + files.length);
+				console.log("Fetching meme #" + num + ", Number of files: " + files.length);
 				return message.channel.send({
 					files: [{
 						attachment: "./img/meme/meme" + num +".png",
