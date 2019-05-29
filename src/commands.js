@@ -415,14 +415,14 @@ async function modCommands(message, args) {
 
 async function userCommands(message, args) {
 	let userHelpString = "";
-	if (message.content.includes("69")){
-		var num = Math.floor(Math.random() * 3);
-		console.log("nice. random num = " + num);
-		if (num === 1){
-			message.channel.send("nice");
-		}
-	}
-	else if (args[0] === "!help") {
+	//if (message.content.includes("69")){
+	//	var num = Math.floor(Math.random() * 3);
+	//	console.log("nice. random num = " + num);
+	//	if (num === 1){
+	//		message.channel.send("nice");
+	//	}
+	//}
+	if (args[0] === "!help") {
 		for (let i = 0; i < userCommandList.length; i++) {
 			if (!userCommandList[i].hide){
 				userHelpString += "`" + userCommandList[i].command + "` -  " + userCommandList[i].description + "\n";
@@ -432,7 +432,7 @@ async function userCommands(message, args) {
 		return await message.channel.send("Here's a list of commands for all users:\n" + userHelpString);
 	}
 	else if (args[0] === "!meme"){
-		if (message.channel.name === "shitposts-and-memes"){
+		if (message.channel.name === "meme-machines"){
 			fs.readdir('./img/meme/', (err, files) => {
 				var num;
 				if (args.length === 2){
