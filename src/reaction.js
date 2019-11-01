@@ -13,10 +13,18 @@ let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 let removeReacts = true;
 const emojiRoleDict = {
 	"nfreakLogo": "Notifications",
-	"buttonRainbow": "Smash Ultimate [Ping]",
-	"buttonBlue": "Left 4 Dead 2 [Ping]",
+	"buttonRainbow": "Destiny 2 [Ping]",
+	"buttonBlue": "Smash Ultimate [Ping]",
 	"buttonRed": "Melee [Ping]",
-	"buttonWhite": "Apex Legends [Ping]"
+	"buttonWhite": "UNIST [Ping]",
+	"buttonGreen": "Minecraft [Ping]",
+	"buttonYellow": "Tekken 7 [Ping]",
+	"buttonPurple": "Borderlands [Ping]"
+};
+const pronounEmoji = {
+	"🇭":"he/him",
+	"🇸":"she/her",
+	"🇹":"they/them"
 };
 
 function emojiToRole(emojiName, messageID) {
@@ -27,18 +35,28 @@ function emojiToRole(emojiName, messageID) {
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
 	if (messageReaction.message.channel.name === "role-assignment") {
-		if (messageReaction.emoji.name === "nfreakW") {
-			console.log("Received nfreakW react");
+		if (messageReaction.emoji.name === "nfW") {
+			console.log("Received nfW react");
 			//add role emotes
 			removeReacts = false;
 			for (let i = 0; i < emojiNames.length; i++) {
 				console.log("reacting with " + DiscordBot.emojis.find("name", emojiNames[i]) + " emote");
 				await messageReaction.message.react(DiscordBot.emojis.find("name", emojiNames[i]));
 			}
-			await messageReaction.remove(user); //remove the nfreakW emoji
+			await messageReaction.remove(user); //remove the nfW emoji
+			removeReacts = true;
+		} else if (messageReaction.emoji.name === "nf4notes") {
+			console.log("Received nf4notes react");
+			//add pronoun emotes
+			removeReacts = false;
+			console.log("Setting pronoun role reactions");
+			await messageReaction.message.react(🇭);
+			await messageReaction.message.react(🇸);;
+			await messageReaction.message.react(🇹);
+			await messageReaction.remove(user); //remove the nf4notes emoji
 			removeReacts = true;
 		} else {
-			console.log("Received something other than nfreakW");
+			console.log("Received something other than nfW or nf4notes");
 			let guild = messageReaction.message.member.guild;
 			let hasRole = false;
 			try {
