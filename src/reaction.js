@@ -50,9 +50,9 @@ async function handleReactionAdd(messageReaction, user, DiscordBot) {
 			//add pronoun emotes
 			removeReacts = false;
 			console.log("Setting pronoun role reactions");
-			await messageReaction.message.react(🇭);
-			await messageReaction.message.react(🇸);;
-			await messageReaction.message.react(🇹);
+			await messageReaction.message.react("🇭");
+			await messageReaction.message.react("🇸");
+			await messageReaction.message.react("🇹");
 			await messageReaction.remove(user); //remove the nf4notes emoji
 			removeReacts = true;
 		} else {
