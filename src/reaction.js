@@ -19,9 +19,7 @@ const emojiRoleDict = {
 	"buttonWhite": "UNIST [Ping]",
 	"buttonGreen": "Minecraft [Ping]",
 	"buttonYellow": "Tekken 7 [Ping]",
-	"buttonPurple": "Borderlands [Ping]"
-};
-const pronounEmoji = {
+	"buttonPurple": "Borderlands [Ping]",
 	"🇭":"he/him",
 	"🇸":"she/her",
 	"🇹":"they/them"
