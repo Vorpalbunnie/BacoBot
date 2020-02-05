@@ -1,8 +1,8 @@
 /*
-	MemeusMachinus index.js
+	BacoBot index.js
 	
 	Originally written by Adam "WaveParadigm" Gincel for the Icons: Combat Arena Discord Server. 
-	Modified by Tyler "NFreak" Morrow for the NFreak Stream Discord.
+	Modified by Tyler "NFreak" Morrow for various servers
 */
 
 //@ts-check
@@ -31,20 +31,14 @@ const updateCacheEvery = 500;
 let numMessages = 0;
 let mainGuild = null;
 
-//Intro text
-let intros = JSON.parse(fs.readFileSync("./info/intros.json", "utf8"));
-
 //Spambot detection
 let spambots = JSON.parse(fs.readFileSync("./info/spam.json", "utf8"));
-
 
 //Create DiscordBot
 const DiscordBot = new Discord.Client({ 
 	//autofetch: ['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'],
 	messageCacheMaxSize: updateCacheEvery + 50
 });
-
-
 
 //Executed upon a message being sent to any channel the bot can look at
 DiscordBot.on('message', async message => {
@@ -64,7 +58,7 @@ DiscordBot.on('message', async message => {
 	// Check all messages for userCommands
 	await commands.userCommands(message, args);
 
-	// If someone asks MemeusMachinus a question
+	// If someone asks BacoBot a question
 	if (message.isMemberMentioned(DiscordBot.user) && message.content[message.content.length - 1] == "?") {
 		await misc.botReply(message, DiscordBot);
 	}
@@ -106,10 +100,6 @@ DiscordBot.on("voiceStateUpdate", async(oldMember, newMember) => {
 
 //Executed upon a new user joining the server
 DiscordBot.on('guildMemberAdd', async(member) => {
-	let introductionsChannel = DiscordBot.channels.get(misc.ids.introductions);
-	var rulesAndRoles = " You'll be granted a Member role very soon. Be sure to read through "+ DiscordBot.channels.get(misc.ids.rules) + "!";
-	var ran = Math.floor(Math.random() * intros.length);
-	
 	//Handle spambots and send intro messages
 	var spam = false;
 	for (let i = 0; i < spambots.length && !spam; i++){
@@ -121,10 +111,7 @@ DiscordBot.on('guildMemberAdd', async(member) => {
 		}
 	}
 	if (!spam){
-		setTimeout(() => {
-			member.addRole(member.guild.roles.find("name", "bunch of nerds"));
-		}, 120000) // 2 minutes
-		await introductionsChannel.send(intros[ran] + "<@!" + member.id + ">" + "!" + rulesAndRoles);
+		// TODO Use Bungie API to detect clan status. Assign roles accordingly
 	}
 });
 
@@ -139,7 +126,7 @@ DiscordBot.login(discordToken).catch(function (reason) {
 DiscordBot.on('ready', async () => {
 	mainGuild = DiscordBot.guilds.get(misc.ids.server);
 	misc.mainGuild = mainGuild;
-	console.log('MemeusMachinus is ready');
+	console.log('BacoBot is ready');
 	DiscordBot.setMaxListeners(0); //done to ensure it responds to everything regardless of how busy the server gets
 	await DiscordBot.user.setActivity("Type !help for commands!");
 	await misc.cacheRoleMessages(DiscordBot);

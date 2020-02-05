@@ -108,23 +108,12 @@ async function cacheRoleMessages(DiscordBot) {
 	process.stdout.write("Cached role messages. ");
 }
 
-async function botReply(message, DiscordBot) {
-	let a = Math.floor(Math.random() * 10);
-	let s = ["wah", "puffWhat", "gunRight", "nfreakW", "stopthis", "expand", "falconPropane", "angery", "doot", "nfreakHi", "spicyoil", "nfreakSoy", "thumbsUp"];
-	let selectedName = s[Math.floor(Math.random() * s.length)];
-	
-	let emote = DiscordBot.emojis.find("name", selectedName);
-		
-	return await message.channel.send(emote.toString());
-}
-
 module.exports.delay = delay;
 module.exports.roleInRoles = roleInRoles;
 module.exports.memberIsMod = memberIsMod;
 module.exports.memberHasRole = memberHasRole;
 module.exports.cacheRoleMessages = cacheRoleMessages;
 module.exports.ids = ids;
-module.exports.botReply = botReply;
 module.exports.reminders = reminders;
 module.exports.addReminder = addReminder;
 module.exports.removeReminder = removeReminder;

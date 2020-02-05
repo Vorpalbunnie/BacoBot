@@ -11,7 +11,6 @@ const misc = require("./misc.js");
 const blacklist = require("./blacklist.js");
 let todoList = JSON.parse(fs.readFileSync("./info/todo.json", "utf8"));
 let userCommandList = JSON.parse(fs.readFileSync("./info/userCommands.json", "utf8"));
-let streamerList = JSON.parse(fs.readFileSync("./info/twitch.json", "utf8"));
 
 //Spambot detection
 let spamlist = JSON.parse(fs.readFileSync("./info/spam.json", "utf8"));
@@ -354,32 +353,7 @@ async function modCommands(message, args) {
 			}
 		}
 		return await message.channel.send(s);
-	} else if (args[0] === "!addstreamer") {
-		if (args.length < 3) {
-			return await message.channel.send("USAGE: `!addstreamer USER CHANNEL");
-		} else {
-			let exists = false;
-			for (let i = 0; i < streamerList.length; i++) {
-				if (streamerList[i].userID === args[1]) {
-					streamerList[i].channel = args[2];
-					exists = true;
-				}
-			}
-			if (!exists) { //add new
-				let toAdd = {
-					"userID": args[1],
-					"channel": args[2]
-				};
-				streamerList.push(toAdd);
-			}
-
-			fs.writeFileSync("./info/twitch.json", JSON.stringify(streamerList, null, "\t"), "utf8");
-			let s = exists ? "Updated " : "Added ";
-			let s2 = exists ? "on " : "to ";
-			return await message.channel.send(s + args[1] + s2 + "stream alerts! Check them out at twitch.tv/" + args[2]);
-		}
-	} 
-	else if (args[0] === "!spambots") {
+	} else if (args[0] === "!spambots") {
 		if (args.length === 1) {
 			let str = "Words on the spambot filter: \n`";
 			for (let i = 0; i < spamlist.length; i++) {

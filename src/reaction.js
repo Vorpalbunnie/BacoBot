@@ -12,14 +12,12 @@ const misc = require("./misc.js");
 let emojiNames = JSON.parse(fs.readFileSync("./info/roleEmoji.json", "utf8"));
 let removeReacts = true;
 const emojiRoleDict = {
-	"nfreakLogo": "Notifications",
-	"buttonRainbow": "Destiny 2 [Ping]",
-	"buttonBlue": "Smash Ultimate [Ping]",
-	"buttonRed": "Melee [Ping]",
-	"buttonWhite": "UNIST [Ping]",
-	"buttonGreen": "Minecraft [Ping]",
-	"buttonYellow": "Tekken 7 [Ping]",
-	"buttonPurple": "Borderlands [Ping]",
+	"BACO": "LFG General",
+	"DoubleDeckerTaco": "LFG Raids",
+	"BeanBurrito": "LFG PVP",
+	"Titan": "Titan Main",
+	"Warlock": "Warlock Main",
+	"Hunter": "Hunter Main",
 	"🇭":"he/him",
 	"🇸":"she/her",
 	"🇹":"they/them"
@@ -32,29 +30,29 @@ function emojiToRole(emojiName, messageID) {
 }
 
 async function handleReactionAdd(messageReaction, user, DiscordBot) {
-	if (messageReaction.message.channel.name === "role-assignment") {
-		if (messageReaction.emoji.name === "nfW") {
-			console.log("Received nfW react");
+	if (messageReaction.message.channel.name === "rules-and-links") {
+		if (messageReaction.emoji.name === "Tricorn") {
+			console.log("Received Tricorn react");
 			//add role emotes
 			removeReacts = false;
 			for (let i = 0; i < emojiNames.length; i++) {
 				console.log("reacting with " + DiscordBot.emojis.find("name", emojiNames[i]) + " emote");
 				await messageReaction.message.react(DiscordBot.emojis.find("name", emojiNames[i]));
 			}
-			await messageReaction.remove(user); //remove the nfW emoji
+			await messageReaction.remove(user); //remove the Tricorn emoji
 			removeReacts = true;
-		} else if (messageReaction.emoji.name === "nf4notes") {
-			console.log("Received nf4notes react");
+		} else if (messageReaction.emoji.name === "Dorito") {
+			console.log("Received Dorito react");
 			//add pronoun emotes
 			removeReacts = false;
 			console.log("Setting pronoun role reactions");
 			await messageReaction.message.react("🇭");
 			await messageReaction.message.react("🇸");
 			await messageReaction.message.react("🇹");
-			await messageReaction.remove(user); //remove the nf4notes emoji
+			await messageReaction.remove(user); //remove the Dorito emoji
 			removeReacts = true;
 		} else {
-			console.log("Received something other than nfW or nf4notes");
+			console.log("Received something other than Tricorn or Dorito");
 			let guild = messageReaction.message.member.guild;
 			let hasRole = false;
 			try {
