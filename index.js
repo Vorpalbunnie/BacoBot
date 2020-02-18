@@ -111,7 +111,11 @@ DiscordBot.on('guildMemberAdd', async(member) => {
 		}
 	}
 	if (!spam){
-		// TODO Use Bungie API to detect clan status. Assign roles accordingly
+		member.addRole(member.guild.roles.find("name", "crunchy shell taco"));
+		member.addRole(member.guild.roles.find("name", ".          Pronouns          ."));
+		member.addRole(member.guild.roles.find("name", ".          Classes            ."));
+		member.addRole(member.guild.roles.find("name", ".          LFG               ."));
+		member.addRole(member.guild.roles.find("name", ".          Titles              ."));
 	}
 });
 
