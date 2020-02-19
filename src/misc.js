@@ -62,7 +62,7 @@ function checkReminders() {
 
 function memberIsMod(message) {
 	let ret = false;
-	const modNames = ["crunchwrap with beans", "quesarito", "BacoBot", "Charlemagne"];
+	const modNames = ["crunchwrap [admin]", "quesarito [mod]", "BacoBot", "Charlemagne"];
 	for (let i = 0; i < modNames.length; i++) {
 		ret = ret || memberHasRole(message, modNames[i]);		
 	}
